@@ -36,6 +36,7 @@ def main(args):
     for f in jpg_files:
         img = Image.open(f)
         img = img.resize((args.img_width, args.img_height))
+        img = img.convert("RGB")
         out_f_path = f.replace(image_dir_path, out_dir_path)
         img.save(out_f_path)
 
@@ -54,14 +55,14 @@ if __name__ == "__main__":
         "--width",
         dest="img_width",
         type=int,
-        default=300,
+        default=512,
         help="output image width in pixels."
     )
     parser.add_argument(
         "--height",
         dest="img_height",
         type=int,
-        default=300,
+        default=512,
         help="output image height in pixels."
     )
     args = parser.parse_args()
