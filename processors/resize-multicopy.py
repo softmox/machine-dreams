@@ -35,7 +35,7 @@ def resize_to_dim(img):
 def multislice_squares(img):
     x, y = img.size
     images = list()
-    img_offset = min(x, y) / 10
+    img_offset = min(x, y) / 20
 
     # conditions under which we only return one image
     # because the original is square enough that it doesn't make sense
@@ -45,6 +45,12 @@ def multislice_squares(img):
         images.append(img)
 
     elif abs(x - y) < floor(img_offset):
+        upper = 0
+        lower = min(x, y)
+        left = 0
+        right = min(x, y)
+        box = (left, upper, right, lower)
+        img = img.crop(box)
         images.append(img)
 
     # conditions under which we return multiple images
